@@ -1,6 +1,7 @@
 console.log('Starting notes.js');
 
 const fs = require('fs');
+const _ = require('lodash')
 
 var fetchNotes = () => {
     try {
@@ -38,7 +39,13 @@ var getNote = (title, body) => {
 }
 
 var removeNote = (title) => {
-    console.log('Removing note :', title);
+    var notes = fetchNotes();
+    var note = notes.find((title) => note.title === title);
+    if (!_.isUndefined(note)) {
+        notes = _.pull(notes, note);
+        saveNotes(notes);
+        return note;
+    }
 }
 
 module.exports = {
