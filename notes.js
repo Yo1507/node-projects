@@ -31,21 +31,27 @@ var addNote = (title, body) => {
 };
 
 var getAll = () => {
-
+    return fetchNotes();
 }
 
 var getNote = (title, body) => {
-    console.log('Getting note ', title);
+    var notes = fetchNotes();
+    var note = notes.find((note) => note.title === title);
+    if(!_.isUndefined(note)){
+        return note;
+    }
 }
 
 var removeNote = (title) => {
     var notes = fetchNotes();
-    var note = notes.find((title) => note.title === title);
-    if (!_.isUndefined(note)) {
-        notes = _.pull(notes, note);
+    var noteToDelete = notes.find((note) => note.title === title);
+    if(!_.isUndefined(noteToDelete)){
+        notes = _.pull(notes, noteToDelete);
         saveNotes(notes);
-        return note;
-    }
+        return true;
+    } return false
+    // var filteredNotes = notes.filter((note) => note.title !== title);
+    // saveNotes(filteredNotes);
 }
 
 module.exports = {
