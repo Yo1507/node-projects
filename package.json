@@ -13,7 +13,8 @@
     "author": "Yo",
     "license": "ISC",
     "dependencies": {
+        "inspect": "0.0.2",
         "lodash": "^4.17.4",
-        "yargs": "^4.7.1"
+        "yargs": "^4.8.1"
     }
 }

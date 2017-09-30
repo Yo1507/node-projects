@@ -1,5 +1,3 @@
-console.log('Starting notes.js');
-
 const fs = require('fs');
 const _ = require('lodash')
 
@@ -32,31 +30,40 @@ var addNote = (title, body) => {
 
 var getAll = () => {
     return fetchNotes();
-}
+};
 
 var getNote = (title, body) => {
     var notes = fetchNotes();
     var note = notes.find((note) => note.title === title);
-    if(!_.isUndefined(note)){
+    if (!_.isUndefined(note)) {
         return note;
     }
-}
+};
 
 var removeNote = (title) => {
     var notes = fetchNotes();
     var noteToDelete = notes.find((note) => note.title === title);
-    if(!_.isUndefined(noteToDelete)){
+    if (!_.isUndefined(noteToDelete)) {
         notes = _.pull(notes, noteToDelete);
         saveNotes(notes);
         return true;
-    } return false
-    // var filteredNotes = notes.filter((note) => note.title !== title);
-    // saveNotes(filteredNotes);
-}
+    }
+    return false
+        // var filteredNotes = notes.filter((note) => note.title !== title);
+        // saveNotes(filteredNotes);
+};
+
+var logNote = (note) => {
+    note = { title: "things to do", body: "go to hell" };
+    console.log('--');
+    console.log(`Title: ${note.title}`);
+    console.log(`Body: ${note.body}`);
+};
 
 module.exports = {
     addNote,
     getAll,
     getNote,
     removeNote,
+    logNote,
 };
